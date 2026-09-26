@@ -51,5 +51,5 @@ rozhodování a uživatelský vstup jsou výsledkem svobodné vůle autora prác
 Toto je mé transparentní prohlášení o použití AI ve své závěrečné práci.
 Veškeré citované zdroje rešerše a referencí k jednotlivým manuálům
 a technickým dokumentacím jsou manuálně prověřené, veškerý tvůrčí grafický
-obsah pochází buď z importovaných knihoven, nebo je vytvořený vlastní rukou,
+obsah pochází buď z importovaných knihoven, nebo je vlastnoručně vytvořen,
 a samotný obsah diplomové práce není vygenerovaný umělou inteligencí.
