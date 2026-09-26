@@ -1,0 +1,734 @@
+% ============================================================================
+%  brandsearch.bib
+%  Zdroje k volbě názvu aplikace (nástupce PoC PetrolScan) — diplomová práce
+%  Stav k 2026-09-25. Kódování UTF-8. Určeno pro biblatex + biber.
+%
+%  Šablona VŠB-TUO (třída diploma, J. Dvorský) má v MasterThesis.tex už toto:
+%      \usepackage[backend=biber, style=iso-numeric, alldates=iso]{biblatex}
+%      \addbibresource{biblatex-examples.bib}
+%      \addbibresource{coffee.bib}
+%      \printbibliography[title={Literatura}, heading=bibintoc]
+%  -> NEPŘIDÁVAT vlastní \usepackage{biblatex} ani volby style/backend.
+%     Stačí přidat třetí řádek k těm existujícím:
+%
+%      \addbibresource{brandsearch.bib}
+%
+%  Ověřeno proti iso.bbx (biblatex-iso690 v0.4.1):
+%   - "[online]" doplňuje makro medium-type automaticky u @online s polem urldate
+%     (u @misc ho přebíjí howpublished), proto není v title;
+%   - "Dostupné z:" generuje makro availability+access z pole url;
+%   - organization se sází driverem online (za location a publisher);
+%   - date/urldate jsou v ISO formátu, což odpovídá volbě alldates=iso.
+%
+%  Značky ověření v komentářích nad položkami (stav po ověřovacím běhu 25. 9. 2026,
+%  kdy bylo prověřeno všech 33 původně nepotvrzených zdrojů):
+%    [OK]        ověřeno přímo — registr, oficiální API nebo obsah stránky odpovídá
+%    [ZMĚNĚNO]   zdroj existuje, ale jeho popis z původní rešerše neodpovídal;
+%                komentář i pole záznamu jsou opravené podle skutečnosti
+%    [ČÁSTEČNĚ]  stránka odpovídá HTTP 200, obsah je vykreslován skriptem
+%                a nešlo ho automaticky přečíst — existence ověřena, popis ne
+%    [NEOV]      ověření selhalo (HTTP 403 / 429) — ověřit ručně v prohlížeči
+%    [CHYBA]     zdroj neexistuje nebo je tvrzení nesprávné; NECITOVAT jako podklad
+%
+%  PROVENIENCE je v poli keywords u každého záznamu (nezávisle na stavu ověření):
+%    keywords = {kolo1-4}  zdroj citovaný v konverzaci s ChatGPT (43 záznamů)
+%    keywords = {kolo5}    zdroj dohledaný až v ověřovací fázi (21 záznamů)
+%  Zařazeno porovnáním URL se 52 odkazy citovanými ve sdílené ChatGPT konverzaci
+%  (shoda podle App Store id, package ID nebo hostname), ne odhadem.
+%
+%  Provenienci lze v práci využít i prakticky, např. vysázet jen jednu skupinu:
+%      \printbibliography[keyword=kolo1-4, title={Zdroje z rešeršní fáze}]
+%      \printbibliography[keyword=kolo5,   title={Zdroje z ověřovací fáze}]
+%  nebo naopak jednu skupinu ze hlavního seznamu vynechat volbou notkeyword=.
+% ============================================================================
+
+
+% ---------------------------------------------------------------------------
+%  1) Použité AI nástroje (do prohlášení o použití AI, ne jako zdroj faktů)
+% ---------------------------------------------------------------------------
+
+% [OK] Trvalá veřejná URL sdílené konverzace, kola 1-4 (generování kandidátů).
+@online{conv:chatgpt,
+  author       = {{OpenAI}},
+  title        = {Návrhy názvů aplikace},
+  subtitle     = {Sdílená konverzace s~ChatGPT},
+  date         = {2026},
+  url          = {https://chatgpt.com/share/6ab677ec-9c7c-83ed-9d00-6799dab8f1f4},
+  urldate      = {2026-09-25},
+  langid       = {czech},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Kolo 5 (ověření registrů a rozhodnutí). Nástroj nemá funkci sdílení,
+%      veřejná URL neexistuje -> není dohledatelný zdroj, jen záznam v příloze.
+@misc{conv:claudecode,
+  author       = {{Anthropic}},
+  title        = {Claude Code},
+  howpublished = {Rozhraní příkazové řádky, model Claude Opus~5},
+  date         = {2026-09-25},
+  note         = {Konverzace bez veřejné URL; přepis a~zjištění v~příloze práce},
+  langid       = {czech},
+  keywords     = {kolo5},
+}
+
+
+% ---------------------------------------------------------------------------
+%  2) Konkurence na trhu ČR/SR — rešerše trhu
+% ---------------------------------------------------------------------------
+
+% [OK] Ověřeno přes iTunes Lookup API (id=6807972745): vydavatel Droppy Technologies s.r.o.,
+%      bundle com.tankuj.Tankuj, lokalizace CS/SK/DE/PL/HR/SL/EN, trhy CZ/AT/SK/HR/SI.
+%      POZOR: ChatGPT tuto aplikaci uvádí pod původním názvem "Tankuj".
+@online{app:tankup,
+  author       = {{Droppy Technologies s.r.o.}},
+  title        = {{TankUp}: Cheap Gas Prices},
+  organization = {App Store},
+  date         = {2026-09-09},
+  url          = {https://apps.apple.com/cz/app/tankuj/id6807972745},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro iOS},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ceny z transakcí CCS, ČR a SR.
+@online{app:tanknavigator,
+  author       = {{Unicorn Systems}},
+  title        = {Tank Navigator~--- Ceny Benzínu},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=eu.unicornsystems.ccs},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android},
+  langid       = {czech},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Na Google Play od června 2026.
+@online{app:fuelnooktankora,
+  title        = {{FuelNook Tankora!}},
+  organization = {Google Play},
+  date         = {2026},
+  url          = {https://play.google.com/store/apps/details?id=com.maheen.fuelnooktankora},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android},
+  keywords     = {kolo1-4},
+}
+
+% [NEOV] Ověření 25. 9. 2026 selhalo: HTTP 429 (Vercel). Obsah nešlo ověřit —
+%        otevřít v prohlížeči.
+@online{web:tankomat,
+  title        = {{Tankomat} for Business},
+  subtitle     = {Cenová data pohonných hmot přes {API}},
+  url          = {https://business.tankomat.app/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+
+% ---------------------------------------------------------------------------
+%  3) Konkurence v Evropě
+% ---------------------------------------------------------------------------
+
+% [OK] Crowdsourcovaná mapa cen PHM — koncepčně nejbližší zamýšlenému řešení.
+@online{web:tanklio,
+  title        = {{Tanklio}},
+  subtitle     = {Find the cheapest fuel near you},
+  url          = {https://tanklio.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Porovnávání cen podle polohy, nastavitelný radius, řazení podle ceny/vzdálenosti.
+@online{web:fuelscopeuk,
+  title        = {{FuelScope}},
+  subtitle     = {{UK} Fuel Price Comparison},
+  url          = {https://fuelscope.uk/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Irská crowdsourcovaná aplikace.
+@online{app:fuelradarie,
+  title        = {{FuelRadar App}},
+  organization = {App Store},
+  url          = {https://apps.apple.com/ie/app/fuelradar/id6760922893},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro iOS, Irsko},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „FuelRadar: Petrol Prices Map“, ceny benzínu, nafty, EV po celé Austrálii.
+@online{app:fuelradarau,
+  title        = {{FuelRadar}},
+  subtitle     = {Petrol Prices Map},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=au.com.fuelradar},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android, Austrálie},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Find Cheapest Fuel & EV Charging Stations“, hledání podle polohy.
+@online{web:fuelscoutuk,
+  title        = {{FuelScout}},
+  subtitle     = {Find Cheapest Fuel \& {EV} Charging Stations},
+  url          = {https://www.fuelscout.uk/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [ZMĚNĚNO] Ověřeno 25. 9. 2026: NENÍ porovnávač cen. Play popisuje správu paliva,
+%            výdajů, údržby a dokumentů vozidla. Tvrzení ChatGPT o geolokaci, rádiusu
+%            a mapě se na tuto aplikaci nevztahuje.
+@online{app:tankeo,
+  title        = {{Tankeo}},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=com.tankeo.app},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android, Francie; správa paliva, výdajů a údržby vozidla},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „ZeFuel – Prix carburants“, Francie.
+@online{app:zefuel,
+  title        = {{ZeFuel}},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=app.zefuel.fr},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android, Francie},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Australia's Smartest Fuel Price App“, predikce cen pomocí AI.
+@online{web:nexfuel,
+  title        = {{NexFuel}},
+  url          = {https://nexfuel.com.au/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [ZMĚNĚNO] Ověřeno přes iTunes Lookup: vydavatel Property Atomic Strong SAC,
+%            bundle com.proatomicdev.gasofa, vydáno 1. 9. 2026. Pracuje s oficiálními
+%            ŠPANĚLSKÝMI cenami, nikoli s nizozemskými dle URL katalogu.
+@online{app:fuelza,
+  author       = {{Property Atomic Strong SAC}},
+  title        = {{Fuelza}},
+  organization = {App Store},
+  url          = {https://apps.apple.com/nl/app/fuelza/id6806683242},
+  urldate      = {2026-09-25},
+  date         = {2026-09-01},
+  note         = {Mobilní aplikace pro iOS; oficiální španělské ceny paliv},
+  keywords     = {kolo1-4},
+}
+
+% [ZMĚNĚNO] Ověřeno přes iTunes Lookup: vydavatel Martin Nagy, bundle martinos.Tankio,
+%            vydáno 16. 7. 2026. Je to kalkulačka nákladů na cestu a dělení výdajů;
+%            hledání okolních stanic, které jí ChatGPT přisuzoval, popis neuvádí.
+@online{app:tankio,
+  author       = {Nagy, Martin},
+  title        = {{Tankio}},
+  subtitle     = {Fuel \& Trip Cost},
+  organization = {App Store},
+  url          = {https://apps.apple.com/cz/app/tankio-fuel-trip-cost/id6789161026},
+  urldate      = {2026-09-25},
+  date         = {2026-07-16},
+  note         = {Mobilní aplikace pro iOS; kalkulačka nákladů na cestu a dělení výdajů},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno přes iTunes Lookup: vydavatel Andres Flores, bundle com.andresflores.PumpScout,
+%      vydáno 22. 1. 2026. „Find cheap gas prices near you, compare nearby stations“ —
+%      přímý konkurent zamýšleného konceptu, tvrzení ChatGPT potvrzeno.
+@online{app:pumpscout,
+  author       = {Flores, Andres},
+  title        = {{Pump Scout}},
+  subtitle     = {Cheap Gas Finder},
+  organization = {App Store},
+  url          = {https://apps.apple.com/cz/app/pump-scout/id6757690053},
+  urldate      = {2026-09-25},
+  date         = {2026-01-22},
+  note         = {Mobilní aplikace pro iOS},
+  keywords     = {kolo1-4},
+}
+
+% [ČÁSTEČNĚ] Stránka odpovídá HTTP 200, ale obsah je vykreslován skriptem a nešlo
+%             automaticky přečíst. Existenci služby považuj za ověřenou, popis ne.
+@online{web:refuely,
+  title        = {{Refuely}},
+  url          = {https://www.refuely.app/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Fuellio app review | Auto Express“.
+@online{art:autoexpressfuellio,
+  author       = {{Auto Express}},
+  title        = {Best fuel monitor apps},
+  date         = {2023},
+  url          = {https://www.autoexpress.co.uk/accessories-tyres/92531/fuel-monitor-app-review},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+
+% ---------------------------------------------------------------------------
+%  4) Kolize u zamítnutých názvů
+% ---------------------------------------------------------------------------
+
+% [OK] NENÍ palivový projekt: plánovač akvárií (tank = akvárium).
+%      ChatGPT tento web a německou aplikaci Tankivo spojil v jedno tvrzení.
+@online{web:tankivo,
+  title        = {{Tankivo}},
+  subtitle     = {Aquarium Setup Planner for Beginners},
+  url          = {https://www.tankivo.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Repozitář právních textů k německé Android aplikaci Tankivo (push 2026-08-18).
+%      Živý záznam na Google Play ani App Store nenalezen (hledáno CZ, DE, AT).
+@online{repo:tankivoweb,
+  author       = {{olmos-cmd}},
+  title        = {{Tankivo-Web}},
+  subtitle     = {Öffentliche Informations- und Rechtstextseiten für die Android-App {Tankivo}},
+  organization = {GitHub},
+  date         = {2026-08-18},
+  url          = {https://github.com/olmos-cmd/Tankivo-Web},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Živý sportovní zpravodajský portál; navíc jedno písmeno od značky La Sportiva.
+@online{web:sporiva,
+  title        = {{Sporiva}},
+  url          = {https://sporiva.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Business Trip & Expense Management; doména registrována 2026-03-18.
+@online{web:cestiva,
+  title        = {{Cestiva}},
+  subtitle     = {Business Trip \& Expense Management},
+  url          = {https://cestiva.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Existující knižní značka.
+@online{web:litrivabrand,
+  title        = {{Litriva}},
+  subtitle     = {Global Books \& Novels Store Online},
+  url          = {https://litrivabrand.com/shop/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Čtenářská komunita téhož názvu.
+@online{web:litrivabookclub,
+  title        = {The {Litriva} Book Club},
+  url          = {https://litriva-book-club.base44.app/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [CHYBA] Zdroj omylu "fulevo.com je registrovaná a nabízená k prodeji".
+%         Jde o listing agregátoru, nikoli o registr. Verisign RDAP vrací pro
+%         fulevo.com stav nenalezeno, tedy doména registrovaná není.
+@online{web:surlyfulevo,
+  title        = {{w.w.w.fulevo.com}},
+  organization = {Sur.ly},
+  url          = {https://sur.ly/i/w.w.w.fulevo.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [ČÁSTEČNĚ] HTTP 200, obsah nešlo automaticky přečíst (skript / ochrana).
+@online{web:filaefulevo,
+  title        = {Nom de famille {FULEVO}},
+  organization = {Filae},
+  url          = {https://www.filae.com/nom-de-famille/FULEVO.html},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Clients and Services — Pump.io Documentation“.
+@online{docs:pumpio,
+  title        = {{pump.io} clients},
+  subtitle     = {{Pump.io} documentation},
+  url          = {https://pumpio.readthedocs.io/en/latest/clients.html},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [NEOV] Ověření 25. 9. 2026 selhalo: HTTP 403. Známku ověřit přímo v USPTO/TMview.
+@online{tm:pumpio,
+  title        = {{PUMPIO} trademark},
+  organization = {Furm},
+  note         = {Registrační číslo 90826977},
+  url          = {https://furm.com/trademarks/pumpio-90826977},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „TANKORA — The Operating System for Fuel Retail“, software pro provoz ČS.
+@online{web:tankora,
+  title        = {{Tankora}},
+  url          = {https://www.tankora.app/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: správa čerpacích stanic s reporty v reálném čase a směnami.
+@online{app:petrolio,
+  title        = {{Petrolio}},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=com.fluxora.petrolio},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Pumply – Cashback beim Tanken“, skenování účtenek, cashback za palivo.
+@online{app:pumply,
+  title        = {{Pumply}},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=com.pumply.app},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: sledování spotřeby, údržby a svolávacích akcí; bez účtu a reklam.
+@online{app:tankly,
+  title        = {{Tankly}},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=com.theotterforge.tankly},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno přes iTunes Lookup: vydavatel Frank Deo, bundle com.frankdeo.Fillio,
+%      vydáno 24. 3. 2026. Sleduje stav domácí nádrže a dodávky paliva.
+@online{app:fillio,
+  author       = {Deo, Frank},
+  title        = {{Fillio}},
+  subtitle     = {Home Fuel Tracker},
+  organization = {App Store},
+  url          = {https://apps.apple.com/cz/app/fillio/id6755162344},
+  urldate      = {2026-09-25},
+  date         = {2026-03-24},
+  note         = {Mobilní aplikace pro iOS},
+  keywords     = {kolo1-4},
+}
+
+% [ZMĚNĚNO] Ověřeno: není obecná softwarová značka, ale „AI Form Assistant“ —
+%            automatické vyplňování formulářů z indických dokladů (Aadhaar, PAN).
+@online{web:fillora,
+  title        = {{Fillora}},
+  subtitle     = {{AI} Form Assistant},
+  url          = {https://fillora.app/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: globální live-streamingová a sociální aplikace.
+@online{web:fuvio,
+  title        = {{Fuvio}},
+  url          = {https://fuvio.live/about},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Local farmers' supply in Belgium“.
+@online{web:fuvora,
+  title        = {{Fuvora}},
+  url          = {https://fuvora.eu/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [ZMĚNĚNO] Ověřeno: behaviorální finance a rozpočet domácnosti (AI, waitlist),
+%            nikoli hotel/gastro software, jak uváděla původní rešerše.
+@online{web:gastio,
+  title        = {{Gastio}},
+  subtitle     = {Behavioral Finance \& Household Budgeting},
+  url          = {https://gastio.io/en},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [ZMĚNĚNO] Ověřeno: na doméně stojí generická stránka „Hostinger Horizons“, nikoli
+%            fungující projekt na rozvoz paliva. Doména je obsazená, značka za ní ale není.
+@online{web:fuelaro,
+  title        = {{Fuelaro}},
+  url          = {https://www.fuelaro.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Terms & Conditions — FuelYT“, služba existuje.
+@online{web:fuelyt,
+  title        = {{FuelYT}},
+  subtitle     = {Terms of service},
+  url          = {https://fuelyt.com/terms},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „energy fundamentals, fleet fuel, and weekly alerts“ — americký FuelScope.
+@online{web:fscope,
+  title        = {{FuelScope}},
+  url          = {https://fscope.net/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: vyhledávání fitness center a trenérů ve Velké Británii.
+@online{web:fuelhive,
+  title        = {{Fuel Hive}},
+  url          = {https://fuelhive.io/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Seamless Video Communication for Teams & Individuals“.
+@online{web:cenivo,
+  title        = {{Cenivo}},
+  url          = {https://cenivo.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: „Oil & Gas Upstream AIoT Solutions“.
+@online{web:petroviaai,
+  title        = {{Petrovia AI}},
+  url          = {https://petroviaai.com/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [CHYBA] Záznam na App Store NEEXISTUJE. iTunes Lookup nevrací pro id=6739288228
+%          žádný výsledek (ověřeno 25. 9. 2026). Aplikace byla stažena, nebo bylo ID
+%          nesprávné. Tento zdroj NECITOVAT.
+@online{app:petroviapontua,
+  title        = {{Petrovia Pontua}},
+  organization = {App Store},
+  url          = {https://apps.apple.com/br/app/petrovia-pontua/id6739288228},
+  urldate      = {2026-09-25},
+  note         = {Záznam na App Store k 25.~9.~2026 nedostupný},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: heslo na Wikipedii existuje.
+@online{wiki:tankero,
+  title        = {{Tankero}},
+  organization = {Wikipedia},
+  url          = {https://en.wikipedia.org/wiki/Tankero},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [OK] Ověřeno: heslo na Wikipedii existuje.
+@online{wiki:tankaro,
+  title        = {{Tankaro}},
+  organization = {Wikipedia},
+  url          = {https://en.wikipedia.org/wiki/Tankaro},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+% [ČÁSTEČNĚ] HTTP 200, obsah vykreslován skriptem — stránka existuje, popis neověřen.
+@online{music:tankelo,
+  title        = {{Tankelo}},
+  organization = {Amazon Music},
+  url          = {https://music.amazon.in/artists/B0B8TJCMFB/tankelo},
+  urldate      = {2026-09-25},
+  keywords     = {kolo1-4},
+}
+
+
+% ---------------------------------------------------------------------------
+%  5) Internetová stopa u finalistů
+% ---------------------------------------------------------------------------
+
+% [OK] Trasiva — jediný nalezený výskyt je osobní účet vývojáře, ne značka.
+@online{gh:trasiva,
+  author       = {{Trasiva}},
+  title        = {Trasiva~--- {GitHub} profile},
+  organization = {GitHub},
+  url          = {https://github.com/Trasiva},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Tankava — nejbližší výskyt je finská lokalita Tankavaara.
+@online{wiki:tankavaara,
+  title        = {{Tankavaara}},
+  organization = {Wikipedia},
+  url          = {https://en.wikipedia.org/wiki/Tankavaara},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Litrivo — nejbližší fonetický šum, literární platforma Litivo.
+@online{web:litivo,
+  title        = {{Litivo}},
+  subtitle     = {Let Stories Evolve With You},
+  url          = {https://litivo.net/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Litrivo — druhý fonetický šum, kazašská aplikace LiTRO.
+@online{app:litro,
+  title        = {{LiTRO}},
+  organization = {Google Play},
+  url          = {https://play.google.com/store/apps/details?id=kz.litro},
+  urldate      = {2026-09-25},
+  note         = {Mobilní aplikace pro Android, Kazachstán},
+  keywords     = {kolo5},
+}
+
+
+% ---------------------------------------------------------------------------
+%  6) Metodika ověřování — registry domén a distribuční platformy
+% ---------------------------------------------------------------------------
+
+% [OK] RDAP národního registru .cz.
+@online{rdap:niccz,
+  author       = {{CZ.NIC}},
+  title        = {{RDAP} služba registru domény {.cz}},
+  url          = {https://rdap.nic.cz/},
+  urldate      = {2026-09-25},
+  langid       = {czech},
+  keywords     = {kolo5},
+}
+
+% [OK] RDAP slovenského registru .sk.
+@online{rdap:sknic,
+  author       = {{SK-NIC}},
+  title        = {{RDAP} služba registru domény {.sk}},
+  url          = {https://rdap.sk-nic.sk/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] RDAP registru .com (thin registry — vydává jen jméno registrátora).
+@online{rdap:verisign,
+  author       = {{Verisign}},
+  title        = {{RDAP} service for {.com}},
+  url          = {https://rdap.verisign.com/com/v1/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] RDAP registru .app.
+@online{rdap:google,
+  author       = {{Google Registry}},
+  title        = {Public {RDAP} {API}},
+  url          = {https://pubapi.registry.google/rdap/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] EURid RDAP neposkytuje; dostupný je WHOIS na portu 43 (whois.eu)
+%      a webové rozhraní. Data registranta jsou kvůli GDPR skrytá.
+@online{whois:eurid,
+  author       = {{EURid}},
+  title        = {{WHOIS} služba registru domény {.eu}},
+  url          = {https://whois.eurid.eu/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Bootstrapovací soubor pro směrování RDAP dotazů podle TLD.
+@online{iana:rdapbootstrap,
+  author       = {{IANA}},
+  title        = {Bootstrap Service Registry for Domain Name Space},
+  url          = {https://data.iana.org/rdap/dns.json},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Oficiální API použité k ověření aplikací na App Store.
+@online{api:itunessearch,
+  author       = {{Apple}},
+  title        = {{iTunes} Search {API}},
+  url          = {https://itunes.apple.com/search},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+
+% ---------------------------------------------------------------------------
+%  7) Rešerše ochranných známek — zbývá provést ručně
+% ---------------------------------------------------------------------------
+
+% [OK] Jeden dotaz přes EUIPO i národní úřady včetně ÚPV ČR a ÚPV SR. Bezplatné.
+@online{tm:tmview,
+  author       = {{EUIPO}},
+  title        = {{TMview}},
+  url          = {https://www.tmdn.org/tmview/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Databáze známek EU. Bezplatné.
+@online{tm:euiposearch,
+  author       = {{EUIPO}},
+  title        = {{eSearch} plus},
+  url          = {https://euipo.europa.eu/eSearch/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Přehled rešeršních nástrojů EUIPO.
+@online{tm:euipotools,
+  author       = {{EUIPO}},
+  title        = {Searches},
+  url          = {https://www.euipo.europa.eu/en/search-ip},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Národní databáze ochranných známek ČR. Bezplatné.
+@online{tm:upv,
+  author       = {{Úřad průmyslového vlastnictví}},
+  title        = {Databáze ochranných známek},
+  url          = {https://www.upv.cz/},
+  urldate      = {2026-09-25},
+  langid       = {czech},
+  keywords     = {kolo5},
+}
+
+% [OK] Globální databáze značek. Bezplatné; API je za captchou ALTCHA,
+%      v prohlížeči funguje bez omezení.
+@online{tm:wipobranddb,
+  author       = {{WIPO}},
+  title        = {Global Brand Database},
+  url          = {https://branddb.wipo.int/branddb/en/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
+
+% [OK] Ověřeno 25. 9. 2026: 0 subjektů pro Litrivo, Trasiva i Tankava.
+%      Pokrývá nezapsaná práva z obchodní firmy, která TMview nezachytí.
+@online{reg:ares,
+  author       = {{Ministerstvo financí ČR}},
+  title        = {{ARES} --- Administrativní registr ekonomických subjektů},
+  url          = {https://ares.gov.cz/},
+  urldate      = {2026-09-25},
+  langid       = {czech},
+  keywords     = {kolo5},
+}
+
+% [OK] Ověřeno 25. 9. 2026: 0 subjektů pro Litrivo i Trasiva. Funkčnost API
+%      potvrzena kontrolním dotazem (Tankuj -> NATANKUJ s. r. o.).
+@online{reg:rposk,
+  author       = {{Štatistický úrad SR}},
+  title        = {Register právnických osôb},
+  url          = {https://api.statistics.sk/rpo/v1/},
+  urldate      = {2026-09-25},
+  keywords     = {kolo5},
+}
